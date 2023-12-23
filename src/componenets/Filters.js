@@ -9,6 +9,7 @@ function Filters() {
     productDispatch,
     productState: { byStock, byFastDelivery, sort, byRating },
   } = CartState();
+  
   return (
     <div className='filter'>
       <span className='title'>Filter Products</span>
@@ -84,7 +85,7 @@ function Filters() {
           onClick={(i) =>
             productDispatch({
               type: "FILTER_BY_RATING",
-              payload: i + 1,
+              payload: i +1,
             })
           }
           style={{ cursor: "pointer" }}

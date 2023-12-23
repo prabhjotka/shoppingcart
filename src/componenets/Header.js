@@ -4,7 +4,7 @@ import {
     Container, Dropdown, FormControl, Navbar,
 } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaCartShopping } from "react-icons/fa6";
 import { CartState } from '../context/Context';
 import { AiFillDelete } from 'react-icons/ai';
@@ -16,7 +16,7 @@ function Header() {
         productDispatch,
     } = CartState();
     return (
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="dark" data-bs-theme="dark" style={{ height: 80 }}>
 
             <Container>
                 <Navbar.Brand>
@@ -24,18 +24,23 @@ function Header() {
                         Shopping Cart
                     </Nav.Link>
                 </Navbar.Brand>
-                <Navbar.Text className='search'>
-                    <FormControl style={{ width: 500 }} 
-                    placeholder='Search a product' 
-                    className='m-auto'
-                    onChange={(e)=>{
-                    productDispatch({
-                        type:"FILTER_BY_SEARCH",
-                        payload:e.target.value,
-                    })
-                    }} />
-                </Navbar.Text>
-                <Dropdown>
+                {useLocation().pathname.split("/")[1] !== "cart" && (
+                    <Navbar.Text className='search'>
+                        <FormControl
+                            style={{ width: 500 }}
+                            type="search"
+                            placeholder='Search a product'
+                            className='m-auto'
+                            aria-label='Search'
+                            onChange={(e) => {
+                                productDispatch({
+                                    type: "FILTER_BY_SEARCH",
+                                    payload: e.target.value,
+                                });
+                            }} />
+                    </Navbar.Text>
+                )}
+                <Dropdown align="end">
                     <Dropdown.Toggle variant='success'>
                         <FaCartShopping color="white" fontSize="25px" />
                         <Badge>

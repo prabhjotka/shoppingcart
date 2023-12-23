@@ -27,7 +27,7 @@ function Home() {
       sortedProducts = sortedProducts.filter((prod) => prod.fastDelivery);
     }
 
-    if (byRating) {
+    if (byRating>0) {
       sortedProducts = sortedProducts.filter(
         (prod) => prod.ratings >= byRating
       );

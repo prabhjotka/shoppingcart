@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import '../styles/style.css';
 import Rating from './Rating';
 import { AiFillDelete } from 'react-icons/ai';
-import { toContainHTML } from '@testing-library/jest-dom/matchers';
+
 function Cart() {
   const {
     state: { cart }, dispatch } = CartState();
@@ -22,13 +22,13 @@ function Cart() {
             <ListGroup.Item key={product.id}>
               <Row>
                 <Col md={2}>
-                  <Image src={product.image} alt={product.name} fluid rounded style={{ width: "100px" }} />
+                  <Image src={product.image} alt={product.name} fluid rounded />
                 </Col>
                 <Col md={2}>
                   <span>{product.name}</span>
                 </Col>
                 <Col md={2}>
-                  <span>{product.price}</span>
+                  {product.price}
                 </Col>
                 <Col md={2}>
                   <Rating rating={product.rating}></Rating>
@@ -42,7 +42,7 @@ function Cart() {
                         type: "CHANGE_CART_QTY",
                         payload: {
                           id: product.id,
-                          qty:e.target.value,
+                          qty: e.target.value,
                         },
                       })
                     }
@@ -52,7 +52,7 @@ function Cart() {
                     ))}
                   </Form.Control>
                 </Col>
-                
+
                 <Col md={2}>
                   <Button
                     type="button"
@@ -71,15 +71,17 @@ function Cart() {
             </ListGroup.Item>
 
           ))}
+
         </ListGroup>
-        <div className='filter summary'>
-          <span className='title'>Subtotal({cart.length}) items</span>
-          <span style={{ fontWeight: 700, fonSize: 20 }}>Total:${total}</span>
-          <Button type="button" disabled={cart.length === 0}>Proceed to Checkout</Button>
-        </div>
       </div>
+      <div className='filter summary'>
+        <span className='title'>Subtotal({cart.length}) items</span>
+        <span style={{ fontWeight: 700, fontSize: 20 }}>Total:${total}</span>
+        <Button type="button" disabled={cart.length === 0}>Proceed to Checkout</Button>
+      </div>
+
     </div>
-  )
-}
+  );
+};
 
 export default Cart;

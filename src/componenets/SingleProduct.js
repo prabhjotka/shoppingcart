@@ -16,7 +16,7 @@ function SingleProduct({ product }) {
         <Card.Img variant='top' src={product.image}
           alt={product.name} />
         <Card.Body>
-          <Card.Title className='title'>
+          <Card.Title>
             {product.name}
           </Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
@@ -56,7 +56,7 @@ function SingleProduct({ product }) {
         </Card.Body>
       </Card>
     </div>
-  )
-}
+  );
+};
 
 export default SingleProduct
